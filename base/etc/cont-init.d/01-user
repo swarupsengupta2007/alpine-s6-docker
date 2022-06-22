@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv sh
+
+re='^[0-9]+$'
+PUID=${PUID:-$DEF_UID}
+PGID=${PGID:-$DEF_GID}
+
+if [[ $PUID =~ $re && $PGID =~ $re ]] ; then
+
+        groupmod        -o -g "$PGID" ${DEF_GROUP} >/dev/null 2>&1
+        usermod         -o -u "$PUID" ${DEF_USER} >/dev/null 2>&1
+
+        chown ${DEF_USER}:${DEF_GROUP} /app
+        chown ${DEF_USER}:${DEF_GROUP} /config
+        chown ${DEF_USER}:${DEF_GROUP} /defaults
+
+fi
