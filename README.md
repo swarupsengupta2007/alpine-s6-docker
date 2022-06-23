@@ -2,8 +2,8 @@
 An alpine based docker image with s6-overlay.
 
 > This build uses `docker buildx` plugin with `docker-container` driver.<br>
-> This uses the [tonistiigi/binfmt](https://github.com/tonistiigi/binfmt "tonistiigi/binfmt") emulator plugin.
-> Docker image available at [swarupsengupta2007/alpine-s6](https://hub.docker.com/r/swarupsengupta2007/alpine-s6 "swarupsengupta2007/alpine-s6")
+> This uses the [tonistiigi/binfmt](https://github.com/tonistiigi/binfmt "tonistiigi/binfmt") emulator plugin. <br>
+> Docker image available at [swarupsengupta2007/alpine-s6](https://hub.docker.com/r/swarupsengupta2007/alpine-s6 "swarupsengupta2007/alpine-s6").
 
 ```bash
 # clone this repo
