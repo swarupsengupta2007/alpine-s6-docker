@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv sh
+
+INIT_DIR=${DEF_CONFIG}/custom/init.d
+SERVICE_DIR=${DEF_CONFIG}/custom/service.d
+
+execute(){
+	if [[ -d ${1} ]]; then
+		res=$(ls -A $1 2>/dev/null)
+	  if [[ ! -z ${res} ]]; then
+	    for SCRIPT in ${1}/*
+	      do
+	        if [[ ! -x ${SCRIPT} ]]; then
+						/bin/sh ${SCRIPT}
+					fi
+	      done
+	  fi
+	else
+		mkdir -p ${1}
+		chown -R ${DEF_USER}:${DEF_USER} ${DEF_CONFIG}
+	fi
+}
+
+execute ${INIT_DIR}
+execute ${SERVICE_DIR}
+
