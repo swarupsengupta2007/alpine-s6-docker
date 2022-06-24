@@ -21,16 +21,16 @@ git clone https://github.com/swarupsengupta2007/alpine-s6-docker
 TARGETS="linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6"
 
 # create a builder instance if it doesn't exists
-sudo docker buildx create --name cross-platform --platform ${TARGETS} --use  
+docker buildx create --name cross-platform --platform ${TARGETS} --use  
 
 # Install cross platform emulators if not already instaled
-sudo docker run --privileged --rm tonistiigi/binfmt --install all
+docker run --privileged --rm tonistiigi/binfmt --install all
 
 # build for current platform and load to docker image
-sudo docker buildx build -t <your_tag> . --load
+docker buildx build -t <your_tag> . --load
 
 # build for multi-arch and push to registry
-sudo docker buildx build -t <your_username>/<your_tag> --platform ${TARGETS} . --push
+docker buildx build -t <your_username>/<your_tag> --platform ${TARGETS} . --push
 ```
 
 Build-args available
@@ -51,8 +51,12 @@ Build-args available
 
 ## Using docker-cli <br>
 ```bash
-sudo docker run --rm -it \
--v /home/swarup/psiphon/config/:/config swarupsengupta2007/alpine-s6 sh
+sudo docker run 
+    --rm                          \
+    -it                           \
+    -v /path/to/config:/config    \
+    swarupsengupta2007/alpine-s6  \
+    sh
 ```
 
 The following Environment var are available<br>
