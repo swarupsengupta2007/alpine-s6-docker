@@ -9,7 +9,9 @@ execute(){
 	  if [[ ! -z ${res} ]]; then
 	    for SCRIPT in ${1}/*
 	      do
-	        if [[ ! -x ${SCRIPT} ]]; then
+	        if [[ -f ${SCRIPT} ]]; then
+						NAME="$(basename ${SCRIPT}"
+						echo "[custom-init] executing: ${NAME}"
 						/bin/sh ${SCRIPT}
 					fi
 	      done

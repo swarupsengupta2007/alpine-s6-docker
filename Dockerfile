@@ -22,7 +22,7 @@ RUN BASE_URI="https://github.com/just-containers/s6-overlay/releases/download"  
 		apk --no-cache add shadow                                                                   && \
 		mkdir -p ${DEF_CONFIG} ${DEF_APP} ${DEF_DEFAULTS}                                           && \
 		groupadd -og ${DEF_GID} ${DEF_GROUP}                                                        && \
-		useradd -ou ${DEF_UID} -g ${DEF_GID} -d ${DEF_CONFIG} ${DEF_USER}                           && \
+		useradd -ou ${DEF_UID} -g ${DEF_GID} -d ${DEF_CONFIG} -s /bin/false ${DEF_USER}             && \
 		chown -R ${DEF_USER}:${DEF_GROUP} ${DEF_CONFIG} ${DEF_APP} ${DEF_DEFAULTS}                  && \
 		case ${TARGETARCH} in                                                                          \
 			arm64) S6ARCH=aarch64; ;;                                                                    \
