@@ -1,11 +1,11 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bash
 
 INIT_DIR=${DEF_CONFIG}/custom/init.d
 SERVICE_DIR=${DEF_CONFIG}/custom/service.d
 
 init(){
 	echo "[custom-init] executing: ${2}"
-	/bin/sh ${1}
+	/bin/bash ${1}
 }
 
 service(){

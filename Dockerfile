@@ -11,6 +11,7 @@ ARG DEF_DEFAULTS=/defaults
 ARG TARGETARCH
 ARG TARGETVARIANT
 ARG S6VERSION=3.1.0.1
+ARG SOFTWARES="shadow,bash"
 ENV DEF_USER=${DEF_USER}           \
 		DEF_GROUP=${DEF_GROUP}         \
 		DEF_UID=${DEF_UID}             \
@@ -19,7 +20,7 @@ ENV DEF_USER=${DEF_USER}           \
 		DEF_APP=${DEF_APP}             \
 		DEF_DEFAULTS=${DEF_DEFAULTS} 
 RUN BASE_URI="https://github.com/just-containers/s6-overlay/releases/download"                  && \
-		apk --no-cache add shadow                                                                   && \
+		apk --no-cache add ${SOFTWARES//,/ }                                                         && \
 		mkdir -p ${DEF_CONFIG} ${DEF_APP} ${DEF_DEFAULTS}                                           && \
 		groupadd -og ${DEF_GID} ${DEF_GROUP}                                                        && \
 		useradd -ou ${DEF_UID} -g ${DEF_GID} -d ${DEF_CONFIG} -s /bin/false ${DEF_USER}             && \
