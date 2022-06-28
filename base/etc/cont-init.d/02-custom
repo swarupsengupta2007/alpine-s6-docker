@@ -10,7 +10,7 @@ execute(){
 	    for SCRIPT in ${1}/*
 	      do
 	        if [[ -f ${SCRIPT} ]]; then
-						NAME="$(basename ${SCRIPT}"
+						NAME="$(basename ${SCRIPT})"
 						echo "[custom-init] executing: ${NAME}"
 						/bin/sh ${SCRIPT}
 					fi
