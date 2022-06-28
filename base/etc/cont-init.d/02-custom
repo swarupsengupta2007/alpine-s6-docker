@@ -3,16 +3,30 @@
 INIT_DIR=${DEF_CONFIG}/custom/init.d
 SERVICE_DIR=${DEF_CONFIG}/custom/service.d
 
-execute(){
+init(){
+	echo "[custom-init] executing: ${2}"
+	/bin/sh ${1}
+}
+
+service(){
+	echo "[custom-service] installing ... ${2}"
+	CUSTOM_DIR=/etc/services.d/custom-${2}
+	mkdir -p ${CUSTOM_DIR}
+	cp ${1} ${CUSTOM_DIR}/run
+	chmod +x ${CUSTOM_DIR}/run
+}
+
+install_scripts(){
 	if [[ -d ${1} ]]; then
 		res=$(ls -A $1 2>/dev/null)
 	  if [[ ! -z ${res} ]]; then
 	    for SCRIPT in ${1}/*
 	      do
-	        if [[ -f ${SCRIPT} ]]; then
-						NAME="$(basename ${SCRIPT})"
-						echo "[custom-init] executing: ${NAME}"
-						/bin/sh ${SCRIPT}
+					NAME="$(basename ${SCRIPT})"
+					if [[ -f ${SCRIPT} ]]; then
+						${2} ${SCRIPT} ${NAME}
+					else
+						echo "[custom-$2] not a valid $2 file"
 					fi
 	      done
 	  fi
@@ -22,6 +36,6 @@ execute(){
 	fi
 }
 
-execute ${INIT_DIR}
-execute ${SERVICE_DIR}
+install_scripts ${INIT_DIR} init
+install_scripts ${SERVICE_DIR} service
 
