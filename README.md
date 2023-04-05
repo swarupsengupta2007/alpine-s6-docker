@@ -44,6 +44,7 @@ Build-args available
 |DEF_APP|/app|app directory used to store app's binary/scripts|
 |DEF_DEFAULTS|/defaults|defaults directory for containing greenfield configurations|
 |BASE_VERSION|3.16.0|os version to use as base|
+|S6VERSION|3.1.0.1|s6-overlay version to use base|
 |BASE_OS|alpine|option to change base os (untested)|
 ---
 
