@@ -2,7 +2,7 @@
 
 TARGETS="linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6"
 BASE_VERION=3.16.5
-S6VERSION=3.1.0.1
+S6VERSION=3.1.4.2
 
 sudo docker buildx build \
 				--build-arg BASE_VERSION=${BASE_VERSION}
